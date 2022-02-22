@@ -1,12 +1,16 @@
 package fr.formation.inti.entity;
 // Generated 18 févr. 2022 é 08:19:10 by Hibernate Tools 3.6.0.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,8 +22,10 @@ import javax.persistence.Table;
 @Table(name = "matchs", catalog = "football")
 public class Matchs implements java.io.Serializable {
 
-	private MatchsId id;
+	private Integer id;
 	private Stades stades;
+	
+	
 	private Equipes equipesByEquipesDomicilesIdEquipes;
 	private Equipes equipesByEquipesExterieursIdEquipes;
 	private String dates;
@@ -30,14 +36,14 @@ public class Matchs implements java.io.Serializable {
 	public Matchs() {
 	}
 
-	public Matchs(MatchsId id, Stades stades, Equipes equipesByEquipesDomicilesIdEquipes, Equipes equipesByEquipesExterieursIdEquipes) {
+	public Matchs(Integer id, Stades stades, Equipes equipesByEquipesDomicilesIdEquipes, Equipes equipesByEquipesExterieursIdEquipes) {
         this.id = id;
         this.stades = stades;
         this.equipesByEquipesDomicilesIdEquipes = equipesByEquipesDomicilesIdEquipes;
         this.equipesByEquipesExterieursIdEquipes = equipesByEquipesExterieursIdEquipes;
     }
 
-	public Matchs(MatchsId id, Stades stades, Equipes equipesByEquipesDomicilesIdEquipes, Equipes equipesByEquipesExterieursIdEquipes, String dates, String scores, String horaires, Integer journee) {
+	public Matchs(Integer id, Stades stades, Equipes equipesByEquipesDomicilesIdEquipes, Equipes equipesByEquipesExterieursIdEquipes, String dates, String scores, String horaires, Integer journee) {
        this.id = id;
        this.stades = stades;
        this.equipesByEquipesDomicilesIdEquipes = equipesByEquipesDomicilesIdEquipes;
@@ -48,18 +54,20 @@ public class Matchs implements java.io.Serializable {
        this.journee = journee;
     }
    
-     @EmbeddedId
+//	@EmbeddedId
 
     
-    @AttributeOverrides( {
-        @AttributeOverride(name="idMatch", column=@Column(name="idMatch", nullable=false) ), 
-        @AttributeOverride(name="equipeByEquipeExterieursIdEquipe", column=@Column(name="Équipes_extérieurs_idÉquipes", nullable=false) ), 
-        @AttributeOverride(name="equipeByEquipeDomicilesIdEquipe", column=@Column(name="Équipes_domiciles_idÉquipes", nullable=false) ) } )
-    public MatchsId getId() {
+//    @AttributeOverrides( {
+//        @AttributeOverride(name="idMatch", column=@Column(name="idMatch", nullable=false) ), 
+//        @AttributeOverride(name="equipesByEquipesExterieursIdEquipes", column=@Column(name="équipes_extérieurs_idéquipes", nullable=false) ), 
+//        @AttributeOverride(name="equipesByEquipesDomicilesIdEquipes", column=@Column(name="équipes_domiciles_idéquipes", nullable=false) ) } )
+	@Id @GeneratedValue(strategy=IDENTITY)
+    @Column(name="idMatch", nullable=false)
+    public Integer getId() {
         return this.id;
     }
 
-	public void setId(MatchsId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -73,7 +81,7 @@ public class Matchs implements java.io.Serializable {
 		this.stades = stades;
 	}
 
-@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="Équipes_domiciles_idÉquipes", nullable=false, insertable=false, updatable=false)
     public Equipes getEquipesByEquipesDomicilesIdEquipes() {
         return this.equipesByEquipesDomicilesIdEquipes;
@@ -83,13 +91,13 @@ public class Matchs implements java.io.Serializable {
         this.equipesByEquipesDomicilesIdEquipes = equipesByEquipesDomicilesIdEquipes;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Equipe_extérieurs_idEquipe", nullable=false, insertable=false, updatable=false)
-    public Equipes getEquipeByEquipeExterieursIdEquipe() {
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="Équipes_extérieurs_idÉquipes", nullable=false, insertable=false, updatable=false)
+    public Equipes getEquipesByEquipesExterieursIdEquipes() {
         return this.equipesByEquipesExterieursIdEquipes;
     }
 
-	public void setEquipeByEquipeExterieursIdEquipe(Equipes equipesByEquipesExterieursIdEquipes) {
+	public void setEquipesByEquipesExterieursIdEquipes(Equipes equipesByEquipesExterieursIdEquipes) {
         this.equipesByEquipesExterieursIdEquipes = equipesByEquipesExterieursIdEquipes;
     }
 

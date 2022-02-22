@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Joueurs implements java.io.Serializable {
 
 	private int idjoueurs;
-	private Equipes Equipes;
+	private Equipes equipes;
 	private String noms;
 	private Integer stats;
 	private String postes;
@@ -27,12 +27,12 @@ public class Joueurs implements java.io.Serializable {
 
 	public Joueurs(int idjoueurs, Equipes Equipes) {
         this.idjoueurs = idjoueurs;
-        this.Equipes = Equipes;
+        this.equipes = Equipes;
     }
 
 	public Joueurs(int idjoueurs, Equipes Equipes, String noms, Integer stats, String postes) {
        this.idjoueurs = idjoueurs;
-       this.Equipes = Equipes;
+       this.equipes = Equipes;
        this.noms = noms;
        this.stats = stats;
        this.postes = postes;
@@ -49,14 +49,14 @@ public class Joueurs implements java.io.Serializable {
 		this.idjoueurs = idjoueurs;
 	}
 
-@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="Equipes_idEquipes", nullable=false)
     public Equipes getEquipes() {
-        return this.Equipes;
+        return this.equipes;
     }
 
 	public void setEquipes(Equipes Equipes) {
-        this.Equipes = Equipes;
+        this.equipes = Equipes;
     }
 
 	@Column(name = "noms", length = 45)

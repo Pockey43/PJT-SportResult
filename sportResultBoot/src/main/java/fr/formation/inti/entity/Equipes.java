@@ -33,7 +33,7 @@ public class Equipes  implements java.io.Serializable {
      private Integer points;
      private Integer butsMarque;
      private Integer butsEncaisse;
-     private Set<Matchs> matchsesForEquipesExtErieursIdEquipes = new HashSet<Matchs>(0);
+     private Set<Matchs> matchsesForEquipesExterieursIdEquipes = new HashSet<Matchs>(0);
      private Set<Joueurs> joueurses = new HashSet<Joueurs>(0);
      private Set<Matchs> matchsesForEquipesDomicilesIdEquipes = new HashSet<Matchs>(0);
 
@@ -45,7 +45,7 @@ public class Equipes  implements java.io.Serializable {
         this.stades = stades;
         this.ligues = ligues;
     }
-    public Equipes(Stades stades, Ligues ligues, String nom, byte[] logo, Integer points, Integer butsMarque, Integer butsEncaisse, Set<Matchs> matchsesForEquipesExtErieursIdEquipes, Set<Joueurs> joueurses, Set<Matchs> matchsesForEquipesDomicilesIdEquipes) {
+    public Equipes(Stades stades, Ligues ligues, String nom, byte[] logo, Integer points, Integer butsMarque, Integer butsEncaisse, Set<Matchs> matchsesForEquipesExterieursIdEquipes, Set<Joueurs> joueurses, Set<Matchs> matchsesForEquipesDomicilesIdEquipes) {
        this.stades = stades;
        this.ligues = ligues;
        this.nom = nom;
@@ -53,7 +53,7 @@ public class Equipes  implements java.io.Serializable {
        this.points = points;
        this.butsMarque = butsMarque;
        this.butsEncaisse = butsEncaisse;
-       this.matchsesForEquipesExtErieursIdEquipes = matchsesForEquipesExtErieursIdEquipes;
+       this.matchsesForEquipesExterieursIdEquipes = matchsesForEquipesExterieursIdEquipes;
        this.joueurses = joueurses;
        this.matchsesForEquipesDomicilesIdEquipes = matchsesForEquipesDomicilesIdEquipes;
     }
@@ -61,7 +61,7 @@ public class Equipes  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="idÉquipes", unique=true, nullable=false)
+    @Column(name="idéquipes", unique=true, nullable=false)
     public Integer getIdEquipes() {
         return this.idEquipes;
     }
@@ -140,16 +140,16 @@ public class Equipes  implements java.io.Serializable {
         this.butsEncaisse = butsEncaisse;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="equipesByEquipesExtErieursIdEquipes")
-    public Set<Matchs> getMatchsesForEquipesExtErieursIdEquipes() {
-        return this.matchsesForEquipesExtErieursIdEquipes;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="equipesByEquipesExterieursIdEquipes")
+    public Set<Matchs> getMatchsesForEquipesExterieursIdEquipes() {
+        return this.matchsesForEquipesExterieursIdEquipes;
     }
     
-    public void setMatchsesForEquipesExtErieursIdEquipes(Set<Matchs> matchsesForEquipesExtErieursIdEquipes) {
-        this.matchsesForEquipesExtErieursIdEquipes = matchsesForEquipesExtErieursIdEquipes;
+    public void setMatchsesForEquipesExterieursIdEquipes(Set<Matchs> matchsesForEquipesExterieursIdEquipes) {
+        this.matchsesForEquipesExterieursIdEquipes = matchsesForEquipesExterieursIdEquipes;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="Equipes")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="equipes")
     public Set<Joueurs> getJoueurses() {
         return this.joueurses;
     }
@@ -158,7 +158,7 @@ public class Equipes  implements java.io.Serializable {
         this.joueurses = joueurses;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="equipesByEquipesDomicilesIdEquipes")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="equipesByEquipesDomicilesIdEquipes")
     public Set<Matchs> getMatchsesForEquipesDomicilesIdEquipes() {
         return this.matchsesForEquipesDomicilesIdEquipes;
     }

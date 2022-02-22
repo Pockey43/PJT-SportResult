@@ -66,7 +66,7 @@ public class Ligues implements java.io.Serializable {
 		this.logo = logo;
 	}
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="ligues")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="ligues")
     public Set<Equipes> getEquipes() {
         return this.equipes;
     }
