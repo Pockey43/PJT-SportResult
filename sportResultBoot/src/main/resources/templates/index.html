@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Sportz &mdash; Colorlib Sports Team Template</title>
     <meta charset="utf-8">
@@ -41,35 +41,35 @@
       <nav class="site-navigation position-relative text-right bg-black text-md-right" role="navigation">
         <div class="container position-relative">
           <div class="site-logo">
-            <a href="index.html"><img src="images/logo.png" alt=""></a>
+            <a th:href="@{/index}"><img src="images/logo.png" alt=""></a>
           </div>
 
           <div class="d-inline-block d-md-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
           <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="active"><a  href="index.html">Accueil</a></li>
-            <li ><a href="calendrier.html">Calendrier</a></li>
+            <li class="active"><a  th:href="@{/index}">Accueil</a></li>
+            <li ><a th:href="@{/calendrier}">Calendrier</a></li>
             <li class="has-children">
               <a  href="#">Classement</a>
               <ul class="dropdown arrow-top">
-                <li><a href="classement1.html">Ligue 1</a></li>
-                <li><a href="classement2.html">Ligue 2</a></li>
+                <li><a th:href="@{/classement1}">Ligue 1</a></li>
+                <li><a th:href="@{/classement2}">Ligue 2</a></li>
                 
               </ul>
             </li>
             <li class="has-children">
               <a href="#">Mes favoris</a>
               <ul class="dropdown arrow-top">
-                <li><a href="monChampionnat.html">Mon championnat</a></li>
-                <li><a href="monEquipe.html">Mon équipe</a></li>
-                <li><a href="mesJoueurs.html">Mes joueurs</a></li>
+                <li><a th:href="@{/monChampionnat}">Mon championnat</a></li>
+                <li><a th:href="@{/monEquipe}">Mon équipe</a></li>
+                <li><a th:href="@{/mesJoueurs}">Mes joueurs</a></li>
               </ul>
             </li>
             <li class="has-children">
               <a href="compte.html">Mon compte</a>
               <ul class="dropdown arrow-top">
-                <li><a href="#">Se connecter</a></li>
-                <li><a href="#">S'inscrire</a></li>
+                <li><a th:href="@{/login}">Se connecter</a></li>
+                <li><a th:href="@{/inscription}">S'inscrire</a></li>
                 <li><a href="#">Se déconnecter</a></li>
               </ul>
             </li>
