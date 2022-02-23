@@ -1,19 +1,47 @@
 package fr.formation.inti.controller;
 
+import java.text.ParseException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+import fr.formation.inti.entity.Match;
+import fr.formation.inti.service.ApiService;
 
 @Controller
 public class NavigationPage {
 	
-	@GetMapping({"/","/index"})
+	@Autowired
+	private ApiService apiService;
+	
+	@GetMapping({"/{leagueId}"})
+	public String testApi(Model model,@PathVariable Integer leagueId) throws JsonMappingException, JsonProcessingException, UnirestException, ParseException {
+		List<Match> matchs = apiService.findMatchByLeague(leagueId);
+		model.addAttribute("matchs", matchs);
+		
+		
+		return "tesApi";
+	}
+	
+	
+	@GetMapping({"/index"})
 	public String index(Model model) {
 		return "index";
 	}
+
 	
-	@GetMapping("/calendrier")
-	public String calendrier(Model model) {
+	@GetMapping("/calendrier/{leagueId}")
+	public String calendrier(Model model,@PathVariable Integer leagueId) throws JsonMappingException, JsonProcessingException, UnirestException, ParseException {
+		List<Match> matchs = apiService.findMatchByLeague(leagueId);
+		model.addAttribute("matchs", matchs);
 		return "/calendrier";
 	}
 	

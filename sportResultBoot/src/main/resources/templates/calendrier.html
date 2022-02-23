@@ -165,24 +165,22 @@
   <table id="dtBasicExample" class="table  " cellspacing="0" width="100%">
   <thead>
     <tr>
-    <th class="th-sm">Date
-      </th>
-      <th class="th-sm">Team A
-      </th>
-      <th class="th-sm">Score
-      </th>
-      <th class="th-sm">Team B
-      </th>
+    
+     	<th class="th-sm">Date</th>
+		<th class="th-sm">Team domicile</th>
+		<th class="th-sm">Score</th>
+		<th class="th-sm">Team extérieure</th>
+		<th class="th-sm">Stade</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-    <td>
+    <tr th:each="match:${matchs}">
+    <td >
       	<div class="text-center float-left">
            <div class="d-block d-lg-flex align-items-center">
              
              <div class="text">
-               <h3 class="h5 mb-0 text-black">17-02-2022</h3>
+               <h3 class="h5 mb-0 text-black" th:utext="${match.date}">17-02-2022</h3>
              </div>
            </div>
          </div>
@@ -195,8 +193,8 @@
                <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
              </div>
              <div class="text">
-               <h3 class="h5 mb-0 text-black">Packers</h3>
-               <span class="text-uppercase small country text-black">Brazil</span>
+               <h3 class="h5 mb-0 text-black" th:utext="${match.teamHome.name}">Packers</h3>
+<!--                <span class="text-uppercase small country text-black">Brazil</span> -->
              </div>
            </div>
          </div>
@@ -204,7 +202,9 @@
       <td>
       	<div class="col-md-4 col-lg-4 text-right mb-4 mb-lg-0">
         	<div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
+                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded">
+                  	<span class="h5" th:utext="${match.scoreHome +'   -   ' + match.scoreAway}">3:2</span>
+                  </div>
             </div>
        	</div>
       </td>
@@ -216,112 +216,13 @@
                       <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
                     </div>
                     <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Steelers</h3>
-                      <span class="text-uppercase small country text-black">London</span>
+                      <h3 class="h5 mb-0 text-black" th:utext="${match.teamAway.name}">Steelers</h3>
+<!--                       <span class="text-uppercase small country text-black">London</span> -->
                     </div>
                   </div>
                 </div>
               </div>
       </td>
-      
-    </tr>
-    <tr>
-    <td>
-      	<div class="text-center float-left">
-           <div class="d-block d-lg-flex align-items-center">
-             
-             <div class="text">
-               <h3 class="h5 mb-0 text-black">22-02-2022</h3>
-             </div>
-           </div>
-         </div>
-      </td>
-   
-      <td>
-      	<div class="text-center text-lg-left float-left">
-           <div class="d-block d-lg-flex align-items-center">
-             <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-               <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-             </div>
-             <div class="text">
-               <h3 class="h5 mb-0 text-black">Packers</h3>
-               <span class="text-uppercase small country text-black">Brazil</span>
-             </div>
-           </div>
-         </div>
-      </td>
-      <td>
-      	<div class="col-md-4 col-lg-4 text-right mb-4 mb-lg-0">
-        	<div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-            </div>
-       	</div>
-      </td>
-      <td>
-   		<div class="col-md-4 col-lg-4 text-center text-lg-left float-none ">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Steelers</h3>
-                      <span class="text-uppercase small country text-black">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-      </td>
-      
-    </tr>
-    <tr>
-    <td>
-      	<div class="text-center float-left">
-           <div class="d-block d-lg-flex align-items-center">
-             
-             <div class="text">
-               <h3 class="h5 mb-0 text-black">25-02-2022</h3>
-             </div>
-           </div>
-         </div>
-      </td>
-   
-      <td>
-      	<div class="text-center text-lg-left float-left">
-           <div class="d-block d-lg-flex align-items-center">
-             <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-               <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-             </div>
-             <div class="text">
-               <h3 class="h5 mb-0 text-black">Packers</h3>
-               <span class="text-uppercase small country text-black">Brazil</span>
-             </div>
-           </div>
-         </div>
-      </td>
-      <td>
-      	<div class="col-md-4 col-lg-4 text-right mb-4 mb-lg-0">
-        	<div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-            </div>
-       	</div>
-      </td>
-      <td>
-   		<div class="col-md-4 col-lg-4 text-center text-lg-left float-none">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Steelers</h3>
-                      <span class="text-uppercase small country text-black">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-      </td>
-      
     </tr>
   </tbody>
   

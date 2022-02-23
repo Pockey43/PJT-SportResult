@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Sportz &mdash; Colorlib Sports Team Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    
+    </head>
+  <body>
+
+	<table th:if="${matchs}">
+		<tr>
+			<th>Date</th>
+			<th>Team domicile</th>
+			<th>Score</th>
+			<th>Team extérieure</th>
+			<th>Stade</th>
+			
+		</tr>
+		<tr th:each="match:${matchs}">
+			<td th:utext="${match.date}"></td>
+			<td th:utext="${match.teamHome.name}"></td>
+			<td th:utext="${match.scoreHome +'   -   ' + match.scoreAway}"></td>
+			<td th:utext="${match.teamAway.name}"></td>
+			<td th:utext="${match.venue.name}"></td>
+		
+		</tr>
+	</table>
+
+
+
+
+</body>
+</html>
