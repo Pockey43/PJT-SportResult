@@ -1,0 +1,75 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+	<title>Login V17</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fontslogin/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fontslogin/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/animate/animate.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendorlogin/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/select2/select2.min.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendorlogin/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="csslogin/util.css">
+        <link rel="stylesheet" type="text/css" href="csslogin/main.css">
+    <!--===============================================================================================-->
+
+</head>
+
+<body>
+	<div class="generic-container">
+		
+		<div class="panel panel-default">
+			  <!-- Default panel contents -->
+		  	<div class="panel-heading"><span class="lead">List of Users </span></div>
+			<table class="table table-hover">
+	    		<thead>
+		      		<tr>
+				        <th>Prenom</th>
+				        <th>Nom</th>
+				        <th>Email</th>
+				        <th>ID</th>
+				     
+				        	
+    
+					</tr>
+		    	</thead>
+	    		<tbody>
+				<tr th:each ="user: ${users}">
+					
+						<td>th:utext ="${user.prenom}"</td>
+						<td>th:utext ="${user.nom}"</td>
+						<td>th:utext ="${user.email}"</td>
+						<td>th:utext ="${user.idUser}"</td>
+					    
+							<td><a href="<c:url value='/edit-user-${user.Id}' />" class="btn btn-success custom-width">edit</a></td>
+				       
+				        
+							<td><a href="<c:url value='/delete-user-${user.Id}' />" onclick="return confirm('Are you sure to delete user?')" class="btn btn-danger custom-width">delete</a></td>
+        				
+					</tr>
+				
+	    		</tbody>
+	    	</table>
+		</div>
+		
+		 	<div class="well">
+		 		<a href="<c:url value='/newuser' />">Add New User</a>
+		 	</div>
+	 
+   	</div>
+</body>
+</html>
