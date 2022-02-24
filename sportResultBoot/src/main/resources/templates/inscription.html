@@ -32,43 +32,54 @@
 
 </head>
 <body>
+
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form action = "login" method= "post" class="login100-form validate-form">
+			
+				<form th:action = "@{/inscription}" th:object="${user}"  method= "post" class="login100-form validate-form">
 					<span class="login100-form-title p-b-34">
 						S'inscrire
 					</span>
-					
+					<div style="color:red" th:utext="${passwordNotEqual}"></div>
 					<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-						<input id="first-name" class="input100" type="text" name="firstname" placeholder="prénom" required="true">
+						<input id="first-name" class="input100" type="text" th:field="*{prenom}" placeholder="prénom" required="required" minlength="2" maxlength="30">
 						<span class="focus-input100"></span>
 					</div>
 
                     <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-						<input id="first-name" class="input100" type="text" name="lastname" placeholder="nom" required="true">
+						<input id="first-name" class="input100" type="text" th:field="*{nom}" placeholder="nom"  required="required" minlength="2" maxlength="30">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100  validate-input m-b-20" data-validate="Type password">
+						<input class="input100" type="password" th:field="*{password}" placeholder="mot de passe" maxlength="30" pattern="^(?=.*[a-z])(?=.*[0-9]).*$">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100  validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="password" name="pass" placeholder="mot de passe">
-						<span class="focus-input100"></span>
+						<input class="input100" type="password" name="confirmPass" placeholder="confirmer le mot de passe" maxlength="30">
+						<span class="focus-input100" th:utext="${passwordNotEqual}"></span>
 					</div>
-
+					<div th:text="${emailUsed}" style="color:red"></div>
 					<div class="wrap-input100  validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="password" name="confirmPass" placeholder="confirmer le mot de passe">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100  validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="email" name="mail" placeholder="email" required="true">
+						<input class="input100" type="email" th:field="*{email}" placeholder="email" required="required" maxlength="500">
 						<span class="focus-input100"></span>
 					</div>
 					<label> Date de naissance </label>
 					<div class="wrap-input100  validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="date" name="bdate" placeholder="date" required="true">
+						<input class="input100" type="date" th:field="*{date}" placeholder="date" required="required" >
 						<span class="focus-input100"></span>
+					</div>
+					
+					<label> Rôle </label>
+					<div class="wrap-input100  validate-input m-b-20" data-validate="Type password">
+						<select class="input100" th:field="*{role.id}">
+    						<option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.nom}">
+    						</option>
+						</select>
 					</div>
 					
 					<div class="wrap-inputTitle"><label> Genre </label></div>
@@ -118,6 +129,8 @@
 			</div>
 		</div>
 	</div>
+	
+
 	
 	
 

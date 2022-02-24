@@ -17,41 +17,41 @@ import javax.persistence.Table;
 @Table(name = "role", catalog = "football")
 public class Role implements java.io.Serializable {
 
-	private int idRole;
-	private String nomRole;
+	private int id;
+	private String nom;
 	private Set<User> users = new HashSet<User>(0);
 
 	public Role() {
 	}
 
-	public Role(int idRole) {
-		this.idRole = idRole;
+	public Role(int id) {
+		this.id = id;
 	}
 
-	public Role(int idRole, String nomRole, Set<User> users) {
-		this.idRole = idRole;
-		this.nomRole = nomRole;
+	public Role(int id, String nom, Set<User> users) {
+		this.id = id;
+		this.nom = nom;
 		this.users = users;
 	}
 
 	@Id
 
-	@Column(name = "idRole", unique = true, nullable = false)
-	public int getIdRole() {
-		return this.idRole;
+	@Column(name = "id", unique = true, nullable = false)
+	public int getId() {
+		return this.id;
 	}
 
-	public void setIdRole(int idRole) {
-		this.idRole = idRole;
+	public void setid(int id) {
+		this.id = id;
 	}
 
-	@Column(name = "nomRole", length = 45)
-	public String getNomRole() {
-		return this.nomRole;
+	@Column(name = "nom", length = 45)
+	public String getNom() {
+		return this.nom;
 	}
 
-	public void setNomRole(String nomRole) {
-		this.nomRole = nomRole;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")

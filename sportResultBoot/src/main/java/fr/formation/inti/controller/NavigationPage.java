@@ -7,20 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import fr.formation.inti.entity.Match;
+import fr.formation.inti.entity.User;
 import fr.formation.inti.service.ApiService;
+import fr.formation.inti.service.IUserService;
 
 @Controller
 public class NavigationPage {
 	
 	@Autowired
 	private ApiService apiService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	@GetMapping({"/{leagueId}"})
 	public String testApi(Model model,@PathVariable Integer leagueId) throws JsonMappingException, JsonProcessingException, UnirestException, ParseException {
@@ -55,15 +63,9 @@ public class NavigationPage {
 		return "classement2";
 	}
 	
-	@GetMapping("/inscription")
-	public String inscription() {
-		return "inscription";
-	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
+
+	
 	@GetMapping("/mesJoueurs")
 	public String mesJoueurs() {
 		return "mesJoueurs";

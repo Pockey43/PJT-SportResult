@@ -7,6 +7,8 @@ import fr.formation.inti.entity.User;
 public interface IUserDao extends JpaRepository<User, Integer> {
 	
 	 User findByEmailAndPassword(String email, String password) ;
+	 
+	 User findByEmail(String email);
 
 	
 

@@ -17,5 +17,7 @@ public interface IUserService {
  
  
  List<User> findAll(); 
+ 
+ User findByEmail(String email);
 
 }

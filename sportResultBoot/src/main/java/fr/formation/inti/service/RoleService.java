@@ -24,7 +24,7 @@ public class RoleService implements IRoleService {
 	@Override
 	public Integer saveRole(Role role) {
 		
-		Integer id = roleDao.save(role).getIdRole();
+		Integer id = roleDao.save(role).getId();
 		return id;
 	}
 
