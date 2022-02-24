@@ -11,6 +11,12 @@ import fr.formation.inti.entity.Match;
 
 public interface ApiService {
 	
-	 List<Match> findMatchByLeague(Integer leagueId) throws UnirestException, JsonMappingException, JsonProcessingException, ParseException;
+	 List<Match> findMatchByLeague(Integer leagueId, Integer season) throws UnirestException, JsonMappingException, JsonProcessingException, ParseException;
+	 
+	 List<Match> findMatchNotPlayed() throws JsonProcessingException, IllegalArgumentException, UnirestException;
+	 
+	 List<Match> findMatchFinished(Integer leagueId, Integer season) throws JsonProcessingException, IllegalArgumentException, UnirestException;
+	 
+	 List<Match> findMatchByDate(Integer leagueId, Integer season, String date) throws JsonProcessingException, IllegalArgumentException, UnirestException;
 
 }
