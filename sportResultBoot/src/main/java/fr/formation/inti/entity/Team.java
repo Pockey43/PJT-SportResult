@@ -14,7 +14,11 @@ public class Team  implements java.io.Serializable {
      private Integer id;
      private String name;
      private String logo;
-     
+     private String code;
+     private Venue stade;
+     private String founded;
+     private String country;
+   
 
     public Team() {
     }
@@ -22,11 +26,14 @@ public class Team  implements java.io.Serializable {
     
 
 
-	public Team(Integer id, String name, String logo) {
+	public Team(Integer id, String name, String logo,String code,String founded,String country) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.logo = logo;
+		this.code = code;
+		this.founded = founded;
+		this.country = country;
 	}
 
 
@@ -60,6 +67,64 @@ public class Team  implements java.io.Serializable {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
+
+	
+	
+
+	public Venue getStade() {
+		return stade;
+	}
+
+
+
+
+	public void setStade(Venue stade) {
+		this.stade = stade;
+	}
+
+
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
+
+
+	public String getFounded() {
+		return founded;
+	}
+
+
+
+
+	public void setFounded(String founded) {
+		this.founded = founded;
+	}
+
+
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
 
 
 	@Override

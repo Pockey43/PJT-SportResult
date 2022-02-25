@@ -2,6 +2,8 @@ package fr.formation.inti.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,11 +56,17 @@ public class ApiTest {
 		JsonNode teamHome = response.findPath("teams").findPath("home");
 		JsonNode teamAway = response.findPath("teams").findPath("away");
 		JsonNode score = response.findPath("score").findPath("fulltime");
+		JsonNode status = response.findPath("status").get("long");
 		Match match2 = new Match();
 		
+//		String datestring = fixture.get("date").asText();
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//		Date date = formatter.parse(datestring);
+		
 		String datestring = fixture.get("date").asText();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		Date date = formatter.parse(datestring);
+		LocalDateTime datetime = LocalDateTime.parse(datestring, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss+00:00"));
+		
+		String date = datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 		match2.setId(fixture.get("id").asInt());
 		match2.setDate(date);
@@ -68,6 +76,7 @@ public class ApiTest {
 		match2.setLeague(objmap.treeToValue(league,League.class));
 		match2.setScoreHome(score.get("home").asInt());
 		match2.setScoreAway(score.get("away").asInt());
+		match2.setStatus(status.asText());
 		System.out.println(match2);
 		
 		return match2;
@@ -105,8 +114,9 @@ public class ApiTest {
 			JsonNode score = respi.findPath("score").findPath("fulltime");
 			
 			String datestring = fixturei.get("date").asText();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-			Date date = formatter.parse(datestring);
+			LocalDateTime datetime = LocalDateTime.parse(datestring, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss+00:00"));
+			
+			String date = datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			
 			matchi.setId(fixturei.get("id").asInt());
 			matchi.setDate(date);
@@ -124,5 +134,59 @@ public class ApiTest {
 		return matchs;
 
 	}
+	
+
+	@GetMapping("/not")
+	private List<Match> findMatchnotYet() throws UnirestException, JsonMappingException, JsonProcessingException, ParseException {
+		HttpResponse<String> client = Unirest
+				.get("https://api-football-v1.p.rapidapi.com/v3/fixtures?status=NS&season=2021&league=39")
+				.header("x-rapidapi-host", "api-football-v1.p.rapidapi.com")
+				.header("x-rapidapi-key", "51b09b1246msh0cc2257e3f23c9bp16944fjsn2f6815b57387").asString();
+		
+		String json = client.getBody();
+		ObjectMapper objmap = new ObjectMapper();
+		objmap.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+		List<Match> matchs = new ArrayList<Match>();
+		
+		JsonNode jsonNode = objmap.readTree(json);
+		
+		Integer nbResults = jsonNode.get("results").asInt();
+		JsonNode response = jsonNode.findPath("response");
+		
+		for(int i=0; i< nbResults; i++) {
+			
+			Match matchi = new Match();
+			
+			JsonNode respi = response.get(i);
+			JsonNode fixturei = respi.findPath("fixture");
+			JsonNode venue = respi.findPath("venue");
+			JsonNode league = respi.findPath("league");
+			JsonNode teamHome = respi.findPath("teams").findPath("home");
+			JsonNode teamAway = respi.findPath("teams").findPath("away");
+			JsonNode score = respi.findPath("score").findPath("fulltime");
+			
+			String datestring = fixturei.get("date").asText();
+			LocalDateTime datetime = LocalDateTime.parse(datestring, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss+00:00"));
+			
+			String date = datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			matchi.setId(fixturei.get("id").asInt());
+			matchi.setDate(date);
+			matchi.setTeamHome(objmap.treeToValue(teamHome, Team.class));
+			matchi.setTeamAway(objmap.treeToValue(teamAway, Team.class));
+			matchi.setVenue(objmap.treeToValue(venue,Venue.class));
+			matchi.setLeague(objmap.treeToValue(league,League.class));
+			matchi.setScoreHome(score.get("home").asInt());
+			matchi.setScoreAway(score.get("away").asInt());
+			
+			matchs.add(matchi);
+			
+		}
+		
+		return matchs;
+	}
+	
+	
 
 }

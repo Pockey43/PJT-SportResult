@@ -10,6 +10,9 @@ public class Venue implements java.io.Serializable {
 	private Integer id;
 	private String name;
 	private String city;
+	private String address;
+	private Integer capacity;
+	private String logo;
 	
 	
 
@@ -18,11 +21,14 @@ public class Venue implements java.io.Serializable {
 
 	
 
-	public Venue(Integer id, String name, String city) {
+	public Venue(Integer id, String name, String city, String address, Integer capacity, String logo) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.city = city;
+		this.address = address;
+		this.capacity = capacity;
+		this.logo=logo;
 	}
 
 
@@ -59,6 +65,44 @@ public class Venue implements java.io.Serializable {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
+
+
+
+	public String getLogo() {
+		return logo;
+	}
+
+
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 
 

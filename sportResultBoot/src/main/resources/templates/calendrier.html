@@ -13,14 +13,16 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    
 
 
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
     
-<!--     <link rel="stylesheet" -->
-<!-- 	href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"> -->
+    <script src="https://kit.fontawesome.com/5f6fc52d69.js" crossorigin="anonymous"></script>
+    
+     
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"> -->
 <!-- <link rel="stylesheet" href="css1/bootstrap.min.css"> -->
@@ -48,7 +50,7 @@
     
     </head>
   <body>
-  
+
   <script type="text/javascript" src="js1/jquery.min.js"></script>
 <script type="text/javascript" src="js1/popper.min.js"></script>
 <script type="text/javascript" src="js1/bootstrap.min.js"></script>
@@ -89,28 +91,19 @@
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li ><a  th:href="@{/index}">Accueil</a></li>
             <li class="active"><a th:href="@{/calendrier}">Calendrier</a></li>
-            <li class="has-children">
-              <a  href="#">Classement</a>
-              <ul class="dropdown arrow-top">
-                <li><a th:href="@{/classement1}">Ligue 1</a></li>
-                <li><a th:href="@{/classement2}">Ligue 2</a></li>
-                
-              </ul>
-            </li>
-            <li class="has-children">
-              <a href="#">Mes favoris</a>
-              <ul class="dropdown arrow-top">
-                <li><a th:href="@{/monChampionnat}">Mon championnat</a></li>
-                <li><a th:href="@{/monEquipe}">Mon équipe</a></li>
-                <li><a th:href="@{/mesJoueurs}">Mes joueurs</a></li>
-              </ul>
-            </li>
-            <li class="has-children">
-              <a href="compte.html">Mon compte</a>
-              <ul class="dropdown arrow-top">
-                <li><a th:href="@{/login}">Se connecter</a></li>
-                <li><a th:href="@{/inscription}">S'inscrire</a></li>
-                <li><a href="#">Se déconnecter</a></li>
+            <li ><a th:href="@{/matchendirect}">Match en direct</a></li>
+					
+			<li class="has-children"><a href="#">Mes favoris</a>
+				<ul class="dropdown arrow-top">
+					<li><a th:href="@{/monChampionnat}">Mon championnat</a></li>
+					<li><a th:href="@{/monEquipe}">Mon équipe</a></li>
+					<li><a th:href="@{/mesJoueurs}">Mes joueurs</a></li>
+				</ul></li>
+			<li class="has-children"><a href="compte.html">Mon compte</a>
+				<ul class="dropdown arrow-top">
+					<li><a th:href="@{/login}">Se connecter</a></li>
+           					<li><a th:href="@{/inscription}">S'inscrire</a></li>
+             				<li><a th:href="@{/logout}">Se déconnecter</a></li>
               </ul>
             </li>
             
@@ -159,10 +152,28 @@
             </div>
           </div>
         </div>
-        
-  
+      <div class="row mb-5">
+        <div class="text-center col-md-12">  
+			  <a  th:class="${season==2021 ? 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-left active' : 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-left'}"  th:href="@{/calendrier1?season=2021}"> 2021</a>
+			  <a  th:class="${season==2020 ? 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-none active' : 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-none'}"  th:href="@{/calendrier1?season=2020}"> 2020</a>
+			  
+			  <a  th:class="${toCome=='toCome' ? 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-right active' : 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-right'}"   th:href="@{/matchToCome}"> Matchs à venir</a> 
+			  <a  th:class="${finished=='finished' ? 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-right active' : 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-right'}"   th:href="@{'/matchFinished?season='+${season}}"> Matchs terminés</a>
+  		</div></div>
+  		
+  		<a  th:if="${previous}" class="btn btn-primary btn-sm rounded-0 py-2 px-1 float-none" th:href="@{'/matchByDatePrevious?fromDate='+${fromDate}}" ><</a>
+ 		<a  th:class="${byDate=='byDate' ? 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-none active' : 'btn btn-primary btn-sm rounded-0 py-2 px-1 float-none'}"  th:href="@{'/matchByDate?fromDate='+${fromDate}}" th:utext="${monthYear}"></a>
+ 		<a  th:if="${next}" class="btn btn-primary btn-sm rounded-0 py-2 px-1 float-none" th:href="@{'/matchByDateNext?fromDate='+${fromDate}}" >></a>
  
-  <table id="dtBasicExample" class="table  " cellspacing="0" width="100%">
+  
+<!--   <form class="float-left" action="matchByDate" method="post"> -->
+<!-- 	<input type="date" name="dateMatch" placeholder="YYYY-MM-dd"> -->
+<!-- 	<button class="btn btn-primary btn-sm rounded-0 py-2 px-1  " type="submit"   >Search</button> -->
+<!-- 	</form> -->
+	
+  <br><br>
+ 		
+  <table th:if="${matchs}" id="dtBasicExample" class="table  " cellspacing="0" width="100%">
   <thead>
     <tr>
     
@@ -170,7 +181,7 @@
 		<th class="th-sm">Team domicile</th>
 		<th class="th-sm">Score</th>
 		<th class="th-sm">Team extérieure</th>
-		<th class="th-sm">Stade</th>
+
     </tr>
   </thead>
   <tbody>
@@ -187,10 +198,10 @@
       </td>
    
       <td>
-      	<div class="text-center text-lg-left float-left ">
+      	<div class="text-center text-lg-left float-none ">
            <div class="d-block d-lg-flex align-items-center">
              <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-               <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
+               <img th:src="${match.teamHome.logo}" alt="Image" class="img-fluid">
              </div>
              <div class="text">
                <h3 class="h5 mb-0 text-black" th:utext="${match.teamHome.name}">Packers</h3>
@@ -200,10 +211,17 @@
          </div>
       </td>
       <td>
-      	<div class="col-md-4 col-lg-4 text-right mb-4 mb-lg-0">
+      	<div th:if="${match.status=='Match Finished'}" class="col-md-12 col-lg-10 text-left my-4 mb-lg-0">
+        	<div class="d-inline-block">
+                  <div  class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded">
+                  	<span class="h5"  th:utext="${match.scoreHome +'  -  '+match.scoreAway}">3:2</span>
+                  </div>
+            </div>
+       	</div>
+       	<div th:if="!${match.status=='Match Finished'}" class="col-md-12 col-lg-10 text-left my-4 mb-lg-0">
         	<div class="d-inline-block">
                   <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded">
-                  	<span class="h5" th:utext="${match.scoreHome +'   -   ' + match.scoreAway}">3:2</span>
+                  	<span class="h5" >A venir</span>
                   </div>
             </div>
        	</div>
@@ -212,8 +230,8 @@
    		 <div class="col-md-4 col-lg-4 text-center text-lg-left float-none ">
                 <div class="">
                   <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
+                    <div class="image image-small text-center ml-lg-3 mb-3 mb-lg-0 mr-lg-3">
+                      <img th:src="${match.teamAway.logo}" alt="Image" class="img-fluid">
                     </div>
                     <div class="text order-1 w-100">
                       <h3 class="h5 mb-0 text-black" th:utext="${match.teamAway.name}">Steelers</h3>
@@ -223,10 +241,16 @@
                 </div>
               </div>
       </td>
+     
+      
     </tr>
   </tbody>
   
 </table>
+
+
+
+
 </div>
 </div>
 

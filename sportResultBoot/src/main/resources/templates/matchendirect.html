@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Sportz &mdash; Colorlib Sports Team Template</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<!--     <link rel="stylesheet" -->
+<!-- 	href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"> -->
+<!-- <link rel="stylesheet" href="css1/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="css1/mdb.min.css"> -->
+<!-- <!-- Plugin file -->
+<!-- <link rel="stylesheet" href="./css1/addons/datatables.min.css"> -->
+<!-- <link rel="stylesheet" href="css1/style.css"> -->
+
+<style>
+table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
+	table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc:before,
+	table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_asc_disabled:before,
+	table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc:before,
+	table.dataTable thead .sorting_desc_disabled:after, table.dataTable thead .sorting_desc_disabled:before
+	{
+	bottom: .5em;
+}
+</style>
+
+
+</head>
+<body>
+
+	<script type="text/javascript" src="js1/jquery.min.js"></script>
+	<script type="text/javascript" src="js1/popper.min.js"></script>
+	<script type="text/javascript" src="js1/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js1/mdb.min.js"></script>
+	<!-- Plugin file -->
+	<script src="./js1/addons/datatables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#dtBasicExample').DataTable();
+			$('.dataTables_length').addClass('bs-select');
+		});
+	</script>
+
+	<div class="site-wrap">
+
+		<div class="site-mobile-menu">
+			<div class="site-mobile-menu-header">
+				<div class="site-mobile-menu-logo">
+					<a href="#"><img src="images/logo.png" alt="Image"></a>
+				</div>
+				<div class="site-mobile-menu-close mt-3">
+					<span class="icon-close2 js-menu-toggle"></span>
+				</div>
+			</div>
+			<div class="site-mobile-menu-body"></div>
+		</div>
+
+		<header class="site-navbar absolute transparent" role="banner">
+
+			<nav
+				class="site-navigation position-relative text-right bg-black text-md-right"
+				role="navigation">
+				<div class="container position-relative">
+					<div class="site-logo">
+						<a th:href="@{/index}"><img src="images/logo.png" alt=""></a>
+					</div>
+
+					<div class="d-inline-block d-md-none ml-md-0 mr-auto py-3">
+						<a href="#" class="site-menu-toggle js-menu-toggle text-white"><span
+							class="icon-menu h3"></span></a>
+					</div>
+
+					<ul class="site-menu js-clone-nav d-none d-md-block">
+						<li><a th:href="@{/index}">Accueil</a></li>
+						<li><a th:href="@{/calendrier}">Calendrier</a></li>
+						<li class="active"><a th:href="@{/matchendirect}">Match en direct</a></li>
+					
+						<li class="has-children"><a href="#">Mes favoris</a>
+							<ul class="dropdown arrow-top">
+								<li><a th:href="@{/monChampionnat}">Mon championnat</a></li>
+								<li><a th:href="@{/monEquipe}">Mon équipe</a></li>
+								<li><a th:href="@{/mesJoueurs}">Mes joueurs</a></li>
+							</ul></li>
+						<li class="has-children"><a href="compte.html">Mon compte</a>
+							<ul class="dropdown arrow-top">
+								<li><a th:href="@{/login}">Se connecter</a></li>
+              					<li><a th:href="@{/inscription}">S'inscrire</a></li>
+                				<li><a th:href="@{/logout}">Se déconnecter</a></li>
+							</ul></li>
+
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<div class="site-blocks-cover overlay"
+			style="background-image: url(images/hero_bg_3.jpg);" data-aos="fade"
+			data-stellar-background-ratio="0.5">
+			<div class="container">
+				<div class="row align-items-center justify-content-start">
+					<div class="col-md-6 text-center text-md-left" data-aos="fade-up"
+						data-aos-delay="400">
+						<h1 class="bg-text-line">Live score</h1>
+						<p class="mt-4">Suivez les matchs en live</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+    <div class="site-section site-blocks-vs">
+      <div class="container">
+        
+        
+        
+              
+              
+          
+
+
+		<table id="dtBasicExample" class="table  " cellspacing="0"
+			width="100%">
+			<thead>
+				<tr>
+
+					<th class="th-sm">Date</th>
+					<th class="th-sm">Team domicile</th>
+					<th class="th-sm">Score</th>
+					<th class="th-sm">Team extérieure</th>
+					<th class="th-sm">Stade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="match:${livematch}">
+					<td>
+						<div class="text-center float-left">
+							<div class="d-block d-lg-flex align-items-center">
+
+								<div class="text">
+									<h3 class="h5 mb-0 text-black" th:utext="${match.date}">17-02-2022</h3>
+								</div>
+							</div>
+						</div>
+					</td>
+
+					<td>
+						<div class="text-center text-lg-left float-left ">
+							<div class="d-block d-lg-flex align-items-center">
+								<div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
+									<img th:src="${match.teamHome.logo}" alt="Image" class="img-fluid">
+								</div>
+								<div class="text">
+									<h3 class="h5 mx-3 text-black"
+										th:utext="${match.teamHome.name}"></h3>
+										<a th:href="@{'/statistique?id='+${match.teamHome.id}}"><button class="btn"><i class="fa fa-bars"></i></button></a>
+									<!--                <span class="text-uppercase small country text-black">Brazil</span> -->
+								</div>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="col-lg-12 col-lg-10 text-center  ml-4 mb-lg-0">
+							<div class="d-inline-block">
+								<div
+									class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded">
+									<span class="h5"
+										th:utext="${match.scoreHome +'   -   ' + match.scoreAway}">3:2</span>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div
+							class="col-md-12 col-lg-10 text-left my-0 mb-lg-0">
+							<div class="">
+								<div class="d-block d-lg-flex align-items-center">
+									<div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
+										<img th:src="${match.teamAway.logo}" alt="Image" class="img-fluid">
+									</div>
+									<div class="text order-1 w-100">
+										<h3 class="h5 mb-0 text-black"
+											th:utext="${match.teamAway.name}"></h3>
+									  		<a th:href="@{'/statistique?id='+${match.teamAway.id}}"><button class="btn"><i class="fa fa-bars"></i></button></a>
+										<!--                       <span class="text-uppercase small country text-black">London</span> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div
+							class="col-md-12 col-lg-10 text-left my-0 mb-lg-0">
+							<div class="">
+								<div class="d-block d-lg-flex align-items-center">
+									<div class="text order-1 w-100">
+										<h3 class="h5 mb-0 text-black"
+											th:utext="${match.venue.name}"></h3>
+									  		<h5 th:utext="${match.venue.city}"></h5>
+										<!--                       <span class="text-uppercase small country text-black">London</span> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	
+
+
+
+	<footer class="site-footer border-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="mb-5">
+						<h3 class="footer-heading mb-4">A propos</h3>
+						<p>Retrouvez les résultats sportifs de vos équipes préferées</p>
+					</div>
+
+
+
+				</div>
+				<div class="col-lg-4 mx-5 mx-md-auto">
+					<div class="row mb-5">
+						<div class="col-md-6 col-lg-6">
+							<h3 class="footer-heading mb-4">Liens utiles</h3>
+							<ul class="list-unstyled">
+								<li><a href="#">A propos</a></li>
+								<li><a href="#">Politique de confidentialité</a></li>
+								<li><a href="#">Nous contacter</a></li>
+								<li><a href="#">Devenir membre</a></li>
+							</ul>
+
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+
+
+
+				<div class="col-lg-4 mb-5 mb-lg-0">
+
+					<div class="mb-5">
+						<h3 class="footer-heading mb-2">S'abonner à la newsletter</h3>
+
+						<form action="#" method="post">
+							<div class="input-group mb-3">
+								<input type="text"
+									class="form-control border-secondary text-white bg-transparent"
+									placeholder="Enter Email" aria-label="Enter Email"
+									aria-describedby="button-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-primary" type="button"
+										id="button-addon2">Send</button>
+								</div>
+							</div>
+						</form>
+
+					</div>
+
+					<div class="col-md-12">
+						<h3 class="footer-heading mb-4">Nous suivre</h3>
+
+						<div>
+							<a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+							<a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+							<a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+							<a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+						</div>
+
+
+
+					</div>
+
+				</div>
+
+			</div>
+			<div class="row pt-5 mt-5 text-center">
+				<div class="col-md-12">
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script data-cfasync="false"
+							src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						All rights reserved | This template is made with <i
+							class="icon-heart-o" aria-hidden="true"></i> by <a
+							href="https://colorlib.com" target="_blank">Colorlib</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	</div>
+
+	<!--   <script src="js/jquery-3.3.1.min.js"></script> -->
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+
+	<script src="js/main.js"></script>
+
+</body>
+</html>

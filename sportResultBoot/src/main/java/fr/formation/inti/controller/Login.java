@@ -2,6 +2,8 @@ package fr.formation.inti.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import fr.formation.inti.service.IUserService;
 
 @Controller
 public class Login {
+	
+	private static Boolean active= false;
 	
 	@Autowired
 	private IUserService userService;
@@ -67,16 +71,26 @@ public class Login {
 	}
 	
 	@PostMapping("/login")
-	public String loginPost(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
+	public String loginPost(Model model, @RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest req ) {
 		User user = userService.findByEmailAndPassword(email, password);
 		
 		if(user!=null) {
 			model.addAttribute("success", "Vous êtes bien connecté");
+			active=true;
+			req.setAttribute("session", active);
 			return "index";
 		}
-		model.addAttribute("fail", "Vous avez saisi des mauvais identifiants");	
+		model.addAttribute("wrongLogin", "Vous avez saisi des mauvais identifiants");	
 		return "login";
 	}
+	
+	@GetMapping("/logout")
+	public String logoutSuccessful(Model model) {
+		model.addAttribute("title", "Logout");
+		model.addAttribute("success", "Vous êtes bien déconnecté");
+		return "login";
+	}
+
 	
 	
 }

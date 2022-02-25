@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Sportz &mdash; Colorlib Sports Team Template</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<title>Stats</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fontslogin/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fontslogin/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/animate/animate.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendorlogin/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendorlogin/select2/select2.min.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendorlogin/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="csslogin/util.css">
+        <link rel="stylesheet" type="text/css" href="csslogin/main.css">
+    <!--===============================================================================================-->
+    
+<style>
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 65% ; /* Center the snackbar */
+  bottom: 50px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 50px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 50px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 50px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 50px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+</style>    
+
+
+
+
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<!--     <link rel="stylesheet" -->
+<!-- 	href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"> -->
+<!-- <link rel="stylesheet" href="css1/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="css1/mdb.min.css"> -->
+<!-- <!-- Plugin file -->
+<!-- <link rel="stylesheet" href="./css1/addons/datatables.min.css"> -->
+<!-- <link rel="stylesheet" href="css1/style.css"> -->
+
+<style>
+table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
+	table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc:before,
+	table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_asc_disabled:before,
+	table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc:before,
+	table.dataTable thead .sorting_desc_disabled:after, table.dataTable thead .sorting_desc_disabled:before
+	{
+	bottom: .5em;
+}
+</style>
+
+
+
+
+
+
+	<script type="text/javascript" src="js1/jquery.min.js"></script>
+	<script type="text/javascript" src="js1/popper.min.js"></script>
+	<script type="text/javascript" src="js1/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js1/mdb.min.js"></script>
+	<!-- Plugin file -->
+	<script src="./js1/addons/datatables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#dtBasicExample').DataTable();
+			$('.dataTables_length').addClass('bs-select');
+		});
+	</script>
+</head>
+	<div class="site-wrap">
+
+		<div class="site-mobile-menu">
+			<div class="site-mobile-menu-header">
+				<div class="site-mobile-menu-logo">
+					<a href="#"><img src="images/logo.png" alt="Image"></a>
+				</div>
+				<div class="site-mobile-menu-close mt-3">
+					<span class="icon-close2 js-menu-toggle"></span>
+				</div>
+			</div>
+			<div class="site-mobile-menu-body"></div>
+		</div>
+		</div>
+
+		<header class="site-navbar absolute transparent" role="banner">
+
+			<nav
+				class="site-navigation position-relative text-right bg-black text-md-right"
+				role="navigation">
+				<div class="container position-relative">
+					<div class="site-logo">
+						<a th:href="@{/index}"><img src="images/logo.png" alt=""></a>
+					</div>
+
+					<div class="d-inline-block d-md-none ml-md-0 mr-auto py-3">
+						<a href="#" class="site-menu-toggle js-menu-toggle text-white"><span
+							class="icon-menu h3"></span></a>
+					</div>
+
+					<ul class="site-menu js-clone-nav d-none d-md-block">
+						<li><a th:href="@{/index}">Accueil</a></li>
+						<li><a th:href="@{/calendrier}">Calendrier</a></li>
+						<li ><a th:href="@{/matchendirect}">Match en direct</a></li>
+					
+						<li class="has-children"><a href="#">Mes favoris</a>
+							<ul class="dropdown arrow-top">
+								<li><a th:href="@{/monChampionnat}">Mon championnat</a></li>
+								<li><a th:href="@{/monEquipe}">Mon équipe</a></li>
+								<li><a th:href="@{/mesJoueurs}">Mes joueurs</a></li>
+							</ul></li>
+						<li class="has-children"><a href="compte.html">Mon compte</a>
+							<ul class="dropdown arrow-top">
+								<li><a th:href="@{/login}">Se connecter</a></li>
+			           					<li><a th:href="@{/inscription}">S'inscrire</a></li>
+			             				<li><a th:href="@{/logout}">Se déconnecter</a></li>
+										</ul></li>
+
+					</ul>
+				</div>
+			</nav>
+		</header>
+		
+<body onload="myFunction()">
+
+<script>
+function myFunction() {
+	  // Get the snackbar DIV
+	  var x = document.getElementById("snackbar");
+
+	  // Add the "show" class to DIV
+	  x.className = "show";
+
+	  // After 3 seconds, remove the show class from DIV
+	  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+
+</script>
+
+
+			
+
+			<!-- teest ========================================================================================== -->
+
+<div class="limiter">
+		<div class="container-login100">
+			<div class="card">
+				<img src="Club" class="card-img-top" alt="Club">
+
+				<div class="card-body">
+					<h5 class="card-title" th:utext="${team.name}"></h5>
+					<p class="card-text" th:utext="${team.founded}"></p>
+					<p class="card-text" th:utext="${team.country}"></p>
+					<img th:src="${team.logo}" alt="Image" class="img-fluid">
+				</div>
+				<a th:href="@{'/teamStat?id='+${team.id}}" class="btn btn-primary">Stats de cette saison</a>
+			</div>
+
+			<div class="card" aria-hidden="true">
+				<img src="Stades :" class="card-img-top" alt="Stades">
+				<div class="card-body">
+				<h1 class="card-title placeholder-glow"  > </h1>
+					<h5 class="card-title placeholder-glow">
+						 <span class="placeholder col-7"> Nom:</span> <span
+							class="placeholder col-6" th:utext="${team.stade.name}"></span>
+					</h5>
+					<p class="card-text placeholder-glow">
+						<span class="placeholder col-7"> Adresse  :</span> 
+						<span class="placeholder col-7" th:utext="${team.stade.address}"></span>
+						<span class="placeholder col-4">Ville  :</span>
+						 
+						<span class="placeholder col-4"th:utext="${team.stade.address}"></span>
+						<span class="placeholder col-6">Capacité  :</span>
+						<span class="placeholder col-6"th:utext="${team.stade.capacity}"></span>
+						
+					</p>
+					
+				</div>
+				<a th:href="@{/matchendirect}" class="btn btn-primary">Précedent</a>
+			</div>
+			
+			</div>
+			
+			
+		
+		
+			</div>
+			
+
+
+		</body>
+</html>

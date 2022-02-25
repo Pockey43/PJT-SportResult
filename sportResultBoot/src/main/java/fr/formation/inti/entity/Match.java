@@ -20,9 +20,10 @@ public class Match implements java.io.Serializable {
 	private Team teamHome;
 	private Team teamAway;
 	
-	private Date date;
+	private String date;
 	private Integer scoreHome;
 	private Integer scoreAway;
+	private String status;
 
 	
 	public Match() {
@@ -32,8 +33,8 @@ public class Match implements java.io.Serializable {
 	
 	
 	
-	public Match(Integer id, Venue venue, League league, Team teamHome, Team teamAway, Date date, Integer scoreHome,
-			Integer scoreAway) {
+	public Match(Integer id, Venue venue, League league, Team teamHome, Team teamAway, String date, Integer scoreHome,
+			Integer scoreAway, String status) {
 		super();
 		this.id = id;
 		this.venue = venue;
@@ -43,6 +44,7 @@ public class Match implements java.io.Serializable {
 		this.date = date;
 		this.scoreHome = scoreHome;
 		this.scoreAway = scoreAway;
+		this.status=status;
 	
 	}
 
@@ -79,10 +81,10 @@ public class Match implements java.io.Serializable {
 	public void setTeamAway(Team teamAway) {
 		this.teamAway = teamAway;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
@@ -107,7 +109,23 @@ public class Match implements java.io.Serializable {
 	public void setScoreAway(Integer scoreAway) {
 		this.scoreAway = scoreAway;
 	}
+	
+	
 
+
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 
 
